@@ -19,6 +19,9 @@ timeout 10 ros2 run mypkg pressure_publisher &> /tmp/test.log # バックグラ�
 # 少し待機してノードの動作を確認
 sleep 2
 
+echo TEST LOG
+cat /tmp/test.log
+
 # ログファイルから気圧データが含まれているかをgrepでチェック
 if grep -qE 'pressure: [0-9]+\.[0-9]+' /tmp/test.log; then
     echo "Test Passed: Valid pressure data found."
