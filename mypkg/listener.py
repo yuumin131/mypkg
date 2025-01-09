@@ -6,9 +6,9 @@ rclpy.init()
 node = Node("listener")
 
 
-def cb(msg):
+def cb(sub):
     global node
-    node.get_logger().info("Listen: %f" % msg.data)
+    node.get_logger().info("Listen: %f" % sub.data)
 
 
 def main():
