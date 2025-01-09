@@ -4,28 +4,23 @@
 
 res=0
 
-# ディレクトリ設定
 dir=~
 [ "$1" != "" ] && dir="$1"
 
-# ROS 2ワークスペースのビルドと環境設定
 cd $dir/ros2_ws
 colcon build
-#source $dir/ros2_ws/install/setup.bash  # ROS 2ワークスペースの環境設定
+#source $dir/ros2_ws/install/setup.bash
 
 source $dir/.bashrc
 source install/setup.bash && source install/local_setup.bash
 
-# タイムアウトでpressure_publisherノードを実行し、ログを/tmp/mypkg.logに保存
-timeout 10 ros2 run mypkg pressure_publisher &> /tmp/test.log # バックグラウンドで実行
+timeout 10 ros2 run mypkg pressure_publisher &> /tmp/test.log
 
-# 少し待機してノードの動作を確認
 sleep 2
 
 echo TEST LOG
 cat /tmp/test.log
 
-# ログファイルから気圧データが含まれているかをgrepでチェック
 if grep -qE 'pressure: [0-9]+\.[0-9]+' /tmp/test.log; then
     echo "Test Passed: Valid pressure data found."
 else
