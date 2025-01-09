@@ -15,7 +15,6 @@ class PressurePublisher(Node):
         msg = Float32()
         msg.data = pressure
         self.publisher_.publish(msg)
-        self.get_logger().info(f'pressure: {pressure:.2f} hPa')
 
 
 def main(args=None):
