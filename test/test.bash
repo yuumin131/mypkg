@@ -1,4 +1,4 @@
-#!/bin/bash -xv
+#!/bin/bash
 # SPDX-FileCopyrightText: 2024 Yuuma Sakurai
 # SPDX-License-Identifier: BSD-3-Clause
 
@@ -14,8 +14,9 @@ colcon build
 source $dir/.bashrc
 source install/setup.bash && source install/local_setup.bash
 
-timeout 10 ros2 run mypkg pressure_publisher &
-timeout 10 ros2 run mypkg listener &> /tmp/test.log
+# timeout 10 ros2 run mypkg pressure_publisher &
+# timeout 10 ros2 run mypkg listener &> /tmp/test.log
+timeout 10 ros2 launch mypkg talk_listen.launch.py &> /tmp/test.log
 
 sleep 2
 

@@ -5,9 +5,9 @@ import launch_ros.actions
 
 
 def generate_launch_description():
-    talker = launch_ros.actions.Node(
+    pressure_publisher = launch_ros.actions.Node(
             package = 'mypkg',
-            executable = 'talk_listen.launch.py',
+            executable = 'pressure_publisher',
             )
 
     listener = launch_ros.actions.Node(
@@ -16,4 +16,4 @@ def generate_launch_description():
             output = 'screen'
             )
 
-    return launch.LaunchDescription([talker, listener])
+    return launch.LaunchDescription([pressure_publisher, listener])
