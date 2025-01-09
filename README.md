@@ -20,7 +20,7 @@ $ ros2 run mypkg pressure_publisher
 実行してもこちらでは何も表示されません。
 もう一つの端末で以下のコマンドを入力します。
 ```
-$ rostopic echo /pressure
+$ ros2 topic echo /pressure
 ```
 出力結果は以下のとおりになります。
 ```
