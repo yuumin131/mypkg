@@ -14,14 +14,15 @@ colcon build
 source $dir/.bashrc
 source install/setup.bash && source install/local_setup.bash
 
-timeout 10 ros2 run mypkg pressure_publisher &> /tmp/test.log
+timeout 10 ros2 run mypkg pressure_publisher &
+timeout 10 ros2 run mypkg listener &> /tmp/test.log
 
 sleep 2
 
 echo TEST LOG
 cat /tmp/test.log
 
-if grep -qE 'pressure: [0-9]+\.[0-9]+' /tmp/test.log; then
+if grep -qE 'Listen: [0-9]+\.[0-9]+' /tmp/test.log; then
     echo "Test Passed: Valid pressure data found."
 else
     echo "Test Failed: No valid pressure data found."
