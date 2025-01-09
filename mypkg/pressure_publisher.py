@@ -11,11 +11,11 @@ class PressurePublisher(Node):
         self.timer = self.create_timer(1.0, self.publish_pressure)
 
     def publish_pressure(self):
-        pressure = random.uniform(950.0, 1050.0)  # ランダムな気圧 (hPa)
+        pressure = random.uniform(950.0, 1050.0)
         msg = Float32()
         msg.data = pressure
         self.publisher_.publish(msg)
-        self.get_logger().info(f'pressure: {pressure:.2f} hPa')  # ログに気圧を記録
+        self.get_logger().info(f'pressure: {pressure:.2f} hPa')
 
 
 def main(args=None):
