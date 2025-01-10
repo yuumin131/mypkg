@@ -3,7 +3,8 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
-import random
+import requests
+from bs4 import BeautifulSoup
 
 
 class PressurePublisher(Node):
@@ -13,7 +14,35 @@ class PressurePublisher(Node):
         self.timer = self.create_timer(1.0, self.publish_pressure)
 
     def publish_pressure(self):
-        pressure = random.uniform(950.0, 1050.0)
+
+        url = "https://www.data.jma.go.jp/stats/data/mdrr/synopday/data1s.html"
+
+        res = requests.get(url)
+        res.encoding = res.apparent_encoding
+
+        soup = BeautifulSoup(res.text, "html.parser")
+
+        print (soup)
+
+        elems = soup.find_all("tr")
+        #print(elems[58].contents[3])
+        #print(elems[58].contents[0])
+        pressure_html = str(elems[58].contents[3])
+        pref_html = str(elems[58].contents[0])
+
+
+
+        pressure_data = pressure_html[:pressure_html.find("</td>")]
+        pressure_data = pressure_data[pressure_data.find(">") + 1:]
+        pref = pref_html[:pref_html.find("</td>")]
+        pref = pref[pref_html.find(">") + 1:]
+        #print(pressure)
+        #print(pref)
+
+        #pressure = random.uniform(950.0, 1050.0)
+
+        pressure = float(pressure_data)
+
         msg = Float32()
         msg.data = pressure
         self.publisher_.publish(msg)

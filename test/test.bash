@@ -7,6 +7,10 @@ res=0
 dir=~
 [ "$1" != "" ] && dir="$1"
 
+sudo apt -y install python3-pip
+pip3 install requests
+pip3 install beautifulsoup4
+
 cd $dir/ros2_ws
 colcon build
 #source $dir/ros2_ws/install/setup.bash
