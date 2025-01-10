@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-FileCopyrightText: 2024 Yuuma Sakurai
+# SPDX-FileCopyrightText: 2025 Yuuma Sakurai
 # SPDX-License-Identifier: BSD-3-Clause
 
 res=0
