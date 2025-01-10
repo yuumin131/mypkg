@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32
+from std_msgs.msg import String
 
 rclpy.init()
 node = Node("listener")
@@ -14,5 +14,5 @@ def cb(sub):
 
 
 def main():
-    sub = node.create_subscription(Float32, "pressure", cb, 10)
+    sub = node.create_subscription(String, "chiba_pressure", cb, 10)
     rclpy.spin(node)

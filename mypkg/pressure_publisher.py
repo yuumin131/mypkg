@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32
+from std_msgs.msg import String
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 class PressurePublisher(Node):
     def __init__(self):
         super().__init__('pressure_publisher')
-        self.publisher_ = self.create_publisher(Float32, 'pressure', 10)
+        self.publisher_ = self.create_publisher(String, 'chiba_pressure', 10)
         self.timer = self.create_timer(1.0, self.publish_pressure)
 
     def publish_pressure(self):
@@ -22,7 +22,7 @@ class PressurePublisher(Node):
 
         soup = BeautifulSoup(res.text, "html.parser")
 
-        print (soup)
+        #print (soup)
 
         elems = soup.find_all("tr")
         #print(elems[58].contents[3])
@@ -46,9 +46,9 @@ class PressurePublisher(Node):
 
         #pressure = random.uniform(950.0, 1050.0)
 
-        pressure = float(pressure_data)
+        pressure = f"{pref}の気圧は{pressure_data}"
 
-        msg = Float32()
+        msg = String()
         msg.data = pressure
         self.publisher_.publish(msg)
 
