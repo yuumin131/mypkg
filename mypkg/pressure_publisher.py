@@ -36,6 +36,11 @@ class PressurePublisher(Node):
         pressure_data = pressure_data[pressure_data.find(">") + 1:]
         pref = pref_html[:pref_html.find("</td>")]
         pref = pref[pref_html.find(">") + 1:]
+        pressure_data = pressure_data.replace(']', '')
+        pressure_data = pressure_data.replace(')', '')
+        pressure_data = pressure_data.replace('#', '')
+        pressure_data = pressure_data.replace('*', '')
+        pressure_data = pressure_data.replace('@', '')
         #print(pressure)
         #print(pref)
 
