@@ -27,7 +27,7 @@ sleep 2
 echo TEST LOG
 cat /tmp/test.log
 
-if grep -qE 'Listen: [0-9]+\.[0-9]+' /tmp/test.log; then
+if grep -qE 'Listen: 千葉の気圧は[0-9]+\.[0-9]+' /tmp/test.log; then
     echo "Test Passed: Valid pressure data found."
 else
     echo "Test Failed: No valid pressure data found."

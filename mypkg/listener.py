@@ -10,7 +10,7 @@ node = Node("listener")
 
 def cb(sub):
     global node
-    node.get_logger().info("Listen: %f" % sub.data)
+    node.get_logger().info("Listen: %s" % sub.data)
 
 
 def main():
