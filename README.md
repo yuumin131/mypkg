@@ -42,7 +42,7 @@ data: 千葉の気圧は1019.0
 - listener.py
 ## 開発環境
 - **OS** : ubuntu20.04 LTS
-- **ROS2** : version: Foxy
+- **ROS2 version**：Foxy
 ## テスト環境(GitHub Actions)
 - **OS**：Ubuntu 22.04 LTS
 - **ROS2 version**：humble
